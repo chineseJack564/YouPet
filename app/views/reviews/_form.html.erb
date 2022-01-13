@@ -1,0 +1,43 @@
+
+
+    <%= form_with model: @review, local: true do |form| %>
+
+        <div class= "row justify-content-center">
+            <div class="mb-3 col-md-2 d-grid">
+                <label  class="form-label">Anonymous Review?</label>
+                <%= form.check_box :anon , class: "form-check-input"%>
+            </div>
+            <div class="mb-3 col-md-6 d-grid">
+                <label  class="form-label">Score</label>
+                <%= form.select :score, options_for_select(Review.scores.keys), {}, class: "form-select" %>
+            </div>
+        </div>  
+
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8 d-grid">
+                    <label  class="form-label">Review Title</label>
+                    <%= form.text_area :title ,  class:"form-control", row:"2"%>
+                    <label class="form-label">5 characters as minimum</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-8 d-grid">
+                    <label  class="form-label">Content</label>
+                    <%= form.text_area :content ,  class:"form-control", row:"2"%>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <div class="row justify-content-center">
+                <div class="col-md-4 d-grid">
+                    <%= form.submit "Submit", class: "btn btn-primary btn-lg post-bt-buffer"%>
+                </div>
+            </div>
+        </div>
+    <%end%>
+

@@ -1,0 +1,31 @@
+<table>
+    <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Titulo</th>
+        <th>Contenido</th>
+        <th>Calificación</th>
+        <th></th>
+    </tr>
+
+    <% @reviews.each do |c| %>
+    <tr>
+        <td><% if c.anon == 1 %>
+            <p>Anónimo</p>
+            <% else %>
+            <p><%= c.sender.username%></p>
+            <% end %></td>
+        <td><%= c.recipient.username %></td>
+        <td><%= c.title %></td>
+        <td><%= c.content %></td>
+        <td><%= c.score %></td>
+        <td><%= link_to 'Show', reviews_show_path(c.id) %></td>
+        <% if current_user == c.sender %>
+        <td><%= link_to 'Edit', reviews_edit_path(c.id) %></td>
+        <td><%= link_to 'Eliminar', reviews_delete_path(c.id), method: :delete%></td>
+        <% end %>
+    </tr>
+    <% end %>
+</table>
+
+<p><%= link_to 'Volver al Menu pricipal', home_path %></p>

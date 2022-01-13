@@ -1,0 +1,74 @@
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<%if @review.sender == current_user%>
+<!-- Breadcrumb Area Start -->
+<div class="section breadcrumb-area bg-name-bright <%=dark%>">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center bg-name-text <%=dark%>">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="breadcrumb-title">Editing Review</h2>
+                    <ul class="align-items-end">
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li>Editing Review<</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<div class="section section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-8 m-auto bg-name-text <%=dark%>">
+            
+                <%= form_with(model: @review, method: :patch, url:reviews_update_path) do |form|%>
+
+                    <div class= "row justify-content-center">
+                        <div class="mb-3 col-md-2 d-grid">
+                            <label  class="form-label">Anonymous Review?</label>
+                            <%= form.check_box :anon , class: "form-check-input"%>
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label  class="form-label">Score</label>
+                            <%= form.select :score, options_for_select(Review.scores.keys), {}, class: "form-select" %>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 d-grid">
+                                <label  class="form-label">Review Title</label>
+                                <%= form.text_area :title ,  class:"form-control", row:"2"%>
+                                <label class="form-label">5 characters as minimum</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="row justify-content-center">
+                            <div class="col-md-8 d-grid">
+                                <label  class="form-label">Content</label>
+                                <%= form.text_area :content ,  class:"form-control", row:"2"%>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <div class="row justify-content-center">
+                            <div class="col-md-4 d-grid">
+                                <%= form.submit "Edit", class: "btn btn-primary btn-lg post-bt-buffer"%>
+                            </div>
+                        </div>
+                    </div>
+                    <% end%>
+                <%else%>
+                <%= render 'error/index' %>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>

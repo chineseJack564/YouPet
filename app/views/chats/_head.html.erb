@@ -1,0 +1,15 @@
+
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+
+<div class="message-user-own bg-name-light <%= dark %>">
+  <div class="user-info-avatar-own">
+    <%= include_image other(@chat) %>
+  </div>
+  <div class="message-user-body-own bg-name-text <%= dark %>">
+    <p class='message-user-username-own'><%= other(@chat).username %></p>
+  </div>
+</div>

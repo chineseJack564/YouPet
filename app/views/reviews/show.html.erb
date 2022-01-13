@@ -1,0 +1,31 @@
+<h1> All Reviews to <%= @user.username %></h1>
+
+<table>
+
+  <%= render 'header' %>
+  <% @reviews.each do |c| %>
+    <% if c.recipient.username == @user.username %>
+    <tr>
+      <td>
+        <% if c.anon == 1 %>
+          <p>Anónimo</p>
+        <% else %>
+          <p><%= c.sender.username%></p>
+        <% end %>
+      </td>
+      <td><%= c.recipient.username %></td>
+      <td><%= c.title %></td>
+      <td><%= c.content %></td>
+      <td><%= c.score %></td>
+      <% if current_user == c.sender %>
+        <td><%= link_to 'Edit', reviews_edit_path(c.id) %></td>
+        <td><%= link_to 'Eliminar', reviews_delete_path(c.id), method: :delete %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  <% end %>
+</table>
+
+<div>
+  <%= link_to 'back', users_show_path(@user) %>
+<div>

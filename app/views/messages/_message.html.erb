@@ -1,0 +1,13 @@
+
+<% msg = 'other-message-own' %>
+<% if refresh %>
+  <% msg = (current_user.id == message.sender.id) ? 'self-message-own' : 'other-message-own' %>
+<% end %>
+<div from=<%= message.sender.id %> class=<%= msg %>>
+  <div class='message-body-own'>
+    <p class="fullmsg-own"><%= message.body %></p>
+    <p class="message-time-own">
+      <%= message.updated_at.strftime("%H:%M") %>
+    </p>
+  </div>
+</div>

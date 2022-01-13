@@ -1,0 +1,231 @@
+// Place all the styles related to the Messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.current-option-container-own.messages-own {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.message-container-own {
+  flex: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 50px;
+}
+
+.message-user-container-own {
+  flex: 2;
+  box-shadow: 0 2px 2px 2px black;
+  border-radius: 1em;
+  margin: 20px 20px 20px 20px;
+  overflow-x: hidden; overflow-y: scroll;
+}
+
+div.message-user-container-own::-webkit-scrollbar-track {
+  margin: 20px 0 20px 0;
+}
+
+#message-chat-container-own {
+  flex: 3;
+  border-radius: 1em;
+  margin: 20px 20px 20px 20px;
+  box-shadow: 0 2px 2px 2px black;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.message-user-own {
+  display: flex;
+  justify-content: flex-start;
+  padding: 1em;
+  margin: 1em 0 1em 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 2px 2px black;
+}
+
+
+
+.message-user-body-own {
+  margin-left: 1em;
+  position: relative;
+  flex: auto;
+}
+
+.message-user-username-own {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+}
+
+.message-user-time-own {
+  position: absolute;
+  right: 0; top: 0;
+  margin: 0;
+}
+
+.message-user-last-own {
+  max-width: 7rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+
+#message-header-own {
+  flex: 0 1 auto;
+  display: flex;
+}
+
+#message-footer-own {
+  flex: 0 1 auto;
+  display: flex;
+  max-height: 100px;
+  min-height: 6rem;
+}
+
+.message-history-own {
+  flex: 8;
+  overflow-x: hidden; overflow-y: scroll;
+  padding: 0 2em 0 2em;
+  display: none;
+}
+
+.message-input-own {
+  flex: auto;
+  margin: 1em;
+  max-height: 30px; 
+  line-height: 30px;
+  padding: 0 10px 0 10px;
+  box-shadow: 0 2px 2px 2px black;
+  border: none;
+  border-radius: 1em;
+  outline: none;
+  font-family: 'Montserrat', 'sans-serif';
+  resize: none;
+  overflow: hidden;
+}
+
+.message-send-own {
+  flex: 1;
+  margin-right: 1.5vw;
+  color: var(--darkmode-bright);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.message-send-own:hover {
+  color: var(--lightmode-secondary);
+}
+
+.other-message-own {
+  display: flex;
+  justify-content: flex-start;
+  height: max-content;
+  margin-bottom: 5px;
+}
+
+.self-message-own {
+  display: flex;
+  justify-content: flex-end;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.other-message-own .message-body-own {
+  background: rgb(71, 71, 71);
+}
+
+.self-message-own .message-body-own {
+  background: rgb(87, 86, 158);
+}
+
+.message-body-own {
+  font-family: 'Montserrat', 'sans-serif';
+  font-size: 1em;
+  color: white;
+  padding: 2%;
+  margin-bottom: 2%;
+  border: 1px solid black;
+  border-radius: 1rem;
+  max-width: 80%;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.fullmsg-own {
+  overflow: hidden;
+  width: 100%;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.message-time-own {
+  font-size: .8rem;
+  margin-left: 1rem;
+  color: rgb(158, 158, 158);
+}
+
+.avatar-own {
+  max-width: 5em; max-height: 2.5em;
+}
+
+.user-info-container-own {
+  height: 10%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-shadow: 0 2px 2px 2px black;
+}
+
+.user-info-avatar-own {
+  margin-left: 1em;
+  display: flex;
+  align-items: center;
+  width: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-info-username-own {
+  margin-left: 1em;
+  font-size: 1.5em;
+}
+
+.user-link-container-own {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-link-own {
+  margin: 5% 0 0 0;
+  padding: 2% 0 2% 0;
+  text-align: center;
+  font-size: 1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s;
+}
+
+.user-link-own:hover {
+  color: var(--lightmode-secondary);
+}
+
+.form-flex-own {
+  flex: 8;
+  display: flex;
+  align-items: center;
+}

@@ -1,0 +1,29 @@
+
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+<h1 class='notif-title-own bg-name-text <%= dark %>'>Chats<i class="fas fa-expand-alt"></i></h1>
+
+
+<% if current_user %>
+
+  <div class="message-container-own">
+    <div class="message-user-container-own bg-name-bright <%= dark %>">
+      <% Chat.user(current_user).each do |chat| %>
+        <%= render partial: 'chats/chat_names', locals: { chat: chat } %>
+      <% end %>
+    </div>
+    <div id="message-chat-container-own" class="bg-name-light <%= dark %>">
+      <div id="message-header-own"></div>
+      <% Chat.user(current_user).each do |chat| %>
+        <div class="message-history-own" id="chat<%= chat.id %>">
+          <%= render partial: 'messages/message', collection: chat.messages, locals: { refresh: true } %>
+        </div>
+      <% end %>
+      <div id="message-footer-own"></div>
+    </div>
+  </div>
+
+<% end %>

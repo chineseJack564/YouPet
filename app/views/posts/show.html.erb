@@ -1,0 +1,258 @@
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<!-- NAv Area Start -->
+<div class="section breadcrumb-area bg-name-bright <%= dark %>">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-wrapper bg-name-text <%= dark %>">
+                    <h2 class="breadcrumb-title">Post Details</h2>
+                    <ul class="align-items-end">
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li><%= link_to 'All post', posts_path%></li>
+                        <li><a><%= @post.title%></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <%if notice %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong><%=notice%></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% end %>
+    </div>
+</div>
+<!-- Nav Area End -->
+
+<!-- Info Section Start -->
+<div class="section section-margin bg-name-text <%= dark %>">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2">
+            <!--Image sec start-->
+                <div class="product-details-img">
+                    <%# single img show start %>
+                        <div class="single-product-img swiper-container product-gallery-top">
+                            <div class="swiper-wrapper popup-gallery">
+                            <%# Put all imgame %>
+                            <% if @post.avatar_main.attached? %>
+                                <a class="swiper-slide w-100"><%= image_tag @post.avatar_main, class: "w-100"%></a>
+                            <% end %>
+                            
+                            <% if @post.avatar2.attached? %>
+                                <a class="swiper-slide w-100">
+                                <%= image_tag @post.avatar2, class: "w-100"%></a>
+                            <% end %>
+                            <% if @post.avatar3.attached? %>
+                                <a class="swiper-slide w-100">
+                                <%= image_tag @post.avatar3, class: "w-100"%></a>
+                            <% end %>
+                            <a class="swiper-slide w-100"><img src="/info.jpg", class="w-100"></a>
+                            </div>
+                        </div>
+                    <%# single img show end %>
+                    <%# img list start %>
+                        <div class="single-product-thumb swiper-container product-gallery-thumbs">
+                            <div class="swiper-wrapper d-flex align-items-center">
+                            <%# all img %>
+                                <div class="swiper-slide">
+                                    <% if @post.avatar_main.attached? %>
+                                        <%= image_tag @post.avatar_main%>
+                                    <% end %>
+                                </div>
+                                    
+                                    <% if @post.avatar2.attached? %>
+                                      <div class="swiper-slide">
+                                        <%= image_tag @post.avatar2%>
+                                        </div>
+                                    <% end %>
+                                    <% if @post.avatar3.attached? %>
+                                        <div class="swiper-slide"><%= image_tag @post.avatar3%></div>
+                                    <% end %>
+                                    
+                                
+                                <div class="swiper-slide">
+                                    <img src="/info.jpg">
+                                </div>
+                            </div>
+                            <%# buttons %>
+                            <div class="swiper-button-next swiper-nav-button"><i class="fas fa-angle-right"></i></div>
+                            <div class="swiper-button-prev swiper-nav-button"><i class="fas fa-angle-left"></i></div>
+                        </div>
+                    <%# img list end %>
+                </div>
+            </div>
+            <!--Image sec end-->
+            <%# Post summry start %>
+            <div class="col-lg-7">
+                <div class="product-summery position-relative">
+                    <%#title%>
+                    <div class="product-head m-b-15">
+                            <h2 class="product-title "><%= @post.title%>  <%= link_to 'Owner: '+ @post.user.username, users_show_path(@post.user), class: 'btn btn-light' %></h2>
+                    </div>
+                    <%# Price box %>
+                    <div class="price-box m-b-10">
+                        <% if @post.post_type == "Sale" %>
+                            <span class="regular-price">For sale</span>
+                            <br>
+                            <span class="regular-price text-numer">$ <%= @post.price %></span>
+                        <%else %>
+                            <span class="regular-price">For <%= @post.post_type%></span>
+                        <% end %>
+                    </div>
+                    <%# type %>
+                    <div class="product-inventroy m-b-15">
+                            <span class="inventroy-title"> <strong><i class='fas fa-paw'></i>
+                            Animal type:</strong></span>
+                            <span class="inventory-varient"><%= @post.specie %></span>
+                    </div>
+                    <div class="product-inventroy m-b-15">
+                            <span class="inventroy-title"> <strong> <i class='fas fa-dog'></i>
+                            Animal breed:</strong></span>
+                            <span class="inventory-varient"><%= @post.breed %></span>
+                    </div>
+                    <%# waring msg %>
+                     <p class="desc-content m-b-25">Animals are our friends. Please make sure your have the condition too raise an animal before you make an order!</p>
+                    <%# Buy %>
+                    <div class="cart-btn action-btn m-b-30">
+                        <div class="action-cart-btn-wrapper d-flex align-items-center">
+                            <div class="add-to_cart">
+                            <% if current_user == @post.user %>
+                                <a class="btn btn-primary btn-hover-dark rounded-0" action=place_order href="#">View placed orders</a>
+                            <% else %>
+                                <a class="btn btn-primary btn-hover-dark rounded-0" action=place_order href="#">Place an order</a>
+                            <% end %>
+                            </div>
+                            <a title="Wishlist" class="action" action=send_message><i class="far fa-comment-dots"></i></a>
+                        </div>
+                    </div>
+                    <%#Socials %>
+                    <div class="social-share">
+                        <div class="widget-social justify-content-start m-b-30">
+                            <%= social_share_button_tag(@post.title, :url => post_url(@post), desc: @post.title) %>
+                        </div>
+                    </div>
+                    <%#Pay%>
+                    <div class="payment-option m-t-20">
+                        <p><strong>We recomend you to use safe payment method: </strong></p>
+                        <a class='pay_icon'>
+                           <i class="fab fa-cc-paypal"></i>
+                        </a>
+                        <a class='pay_icon'><i class="fab fa-cc-visa"></i></a>
+                    </div>
+                </div>
+            </div>
+            <%# Post summry end %>
+        </div>
+    </div>
+</div>
+<!-- Info Section end -->
+
+<!-- tab Section start -->
+<div class="section section-padding bg-name-bright <%= dark %>" id='tab-section-container'>
+    <div class="container bg-name-text <%= dark %>">
+        <div class="row">
+        <!-- list Tab Start -->
+        <div class="col-lg-12 single-product-tab">
+            <%# list of tabs %>
+            <ul class="nav nav-tabs m-b-n15" id="myTab" role="tablist">
+                <li class="nav-item m-b-15">
+                    <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#connect-1" role="tab" aria-selected="true">Description</a>
+                </li>
+                <li class="nav-item m-b-15">
+                    <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#connect-2" role="tab" aria-selected="false">Find me at</a>
+                </li>
+                <li class="nav-item m-b-15">
+                    <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#connect-3" role="tab" aria-selected="false">Comments</a>
+                </li>
+                <li class="nav-item m-b-15">
+                    <a class="nav-link" id="review-tab" data-bs-toggle="tab" href="#connect-4" role="tab" aria-selected="false">Orders</a>
+                </li>
+            </ul>
+            <%#content container start %>
+            <div class="tab-content mb-text" id="myTabContent">
+                <%# description %>
+                <div class="tab-pane fade show active" id="connect-1" role="tabpanel" aria-labelledby="home-tab">
+                    <div class="desc-content">
+                        <strong><p class="m-b-10">Someting about me:</p></strong>
+                        <p class="m-b-15"><%= @post.description %></p>
+                    </div>
+                </div>
+
+                <%# location %>
+                <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="desc-content">
+                     <div class="row">
+                        <div class="col-lg-6">
+                        <embed width="100%" height="400" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=<%=@post.coord_x%>,<%=@post.coord_y%>&language=en&key=AIzaSyB-Vhmg4-YjVAfcYFa4lJBqiAFvbPffp6I">
+                        </div>
+                        <div class="col-lg-6">
+                            <h3 class="post-dir1"><i class="far fa-map"></i> Find me at</h3>
+                            <p class="post-dir2"><%= @post.address %></p>
+                        </div> 
+                    </div>
+                    </div>
+                </div>
+
+                <%# Comments %>
+                <div class="tab-pane fade" id="connect-3" role="tabpanel" aria-labelledby="profile-tab">
+                    <!-- Start Single Content -->
+                        <!-- Start Single Review -->
+                        <%@post.comments.each do |c|%>
+                            <%= render c %>
+                        <% end %>
+                        <h3 class="mt-5">Post Your Coment</h3>
+                        <%= render 'comments/form' %>
+                </div>    
+
+                <%# orders %>
+                <div class="tab-pane fade" id="connect-4" role="tabpanel" aria-labelledby="contact-tab">
+                     <% if @post.open %>
+                        <% if @post.user != current_user %>
+
+                        <h2 class="sec-title-or">My orders:</h2>
+                        <p><%= render current_user_orders @post %></p>
+                        <div id="placeorder">
+                            <h2 class="sec-title-or">Place an order:</h2>
+                            <%= render 'orders/form' %>
+                        </div>
+
+                        <% else %>
+
+                        <h2 class="sec-title-or" id="order_rec">All recived orders:</h2>
+                        <% @post.orders.each do |o| %>
+                        <%= render o %>
+                        <% next if o.status == 'rejected' %>
+                        <div class="btn-group mb-3" role="group">
+                        <%= link_to 'Accept', accept_order_post_path(@post.id, o.id), class: 'btn btn-success accept-order' %>
+                        <%= link_to 'Reject', reject_order_post_path(@post.id, o.id), class: 'btn btn-danger reject-order' %>
+                        <%= link_to 'View profile', users_show_path(o.user), class: 'btn btn-primary' %>
+                        </div>
+                        <% end %>
+
+                        <% end %>
+
+                        <% else %>
+
+                        <h2 class="sec-title-or">An order was accepted</h2>
+                        <% @post.orders.each do |o| %>
+                        <% if o.status == 'accepted' or o.status == 'finished'%>
+                        <%= render o %>
+                        <% end %>
+                        <% end %>
+
+                        <% end %>
+                </div>
+            </div>
+            <%# content container end %>
+        </div>
+        <!-- list Tab end -->
+        </div>
+    </div>
+</div>
+<!-- tab Section end -->
+<div class="section section-margin">
+</div>

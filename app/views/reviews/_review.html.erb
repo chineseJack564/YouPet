@@ -1,0 +1,74 @@
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<div class="rev-container">
+  <div class="container">
+    <div class="row">
+        <p class="mb-1 bg-name-text <%= dark %>"><strong><%= review.title %></strong></p>
+    </div>
+        <div class="col-12 d-flex justify-content-start">
+        <% if review.score.length == 1 %>
+              <i class="fas fa-star star"></i>
+        <% elsif review.score.length == 2%>
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            </div>
+         <% elsif review.score.length == 3%>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+          <% elsif review.score.length == 4%>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+           <% elsif review.score.length == 5%>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+            
+              <i class="fas fa-star star"></i>
+
+        <% end %>
+    </div>
+    <div class="row">
+        <p class="mb-1 bg-name-text <%= dark %>">From:
+        <% if review.anon == 1 %>
+        <span>Anónimo</span>
+        <% else %>
+        <span><%= link_to review.sender.username, users_show_path(review.sender), class: 'username-link2' %></span>
+        <% end %></p>
+    </div>
+    <div class="row"> 
+      <p class="conten-rev mb-1"><%= review.content %>
+    </p>
+    </div>
+    <div class="row justify-content-between align-items-end"> 
+    <div class="col-lg-3 mb-2">
+        <div class="btn-group" role="group">
+        <% if current_user == review.sender %>
+        <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, reviews_edit_path(review.id), class:"btn btn-light btn-sm" %>
+        <%= link_to '<i class="far fa-trash-alt"></i> Delete'.html_safe, reviews_delete_path(review.id), class:"btn btn-danger btn-sm", method: :delete %>
+        <% end %>
+        </div>
+    </div>
+    <div class="col-xl-2 rev-date mb-2 bg-name-text <%= dark %>">
+     <%= review.created_at %>
+    </div>
+    </div>
+</div>
+</div>

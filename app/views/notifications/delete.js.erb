@@ -1,0 +1,9 @@
+
+$('.notif-del-own').bind('ajax:success', function() {
+  console.log(this);
+  var $notif = $(this).closest('.notif-container-own')
+  $notif.css({
+    'height': 0,
+    'margin-bottom': 0
+  });
+})

@@ -1,0 +1,24 @@
+<h2>Users List</h2>
+
+<% if current_user %>
+  <p>logged in as: <%= current_user.username %></p>
+  <p><%= link_to 'view my profile', users_show_path(current_user) %></p>
+<% end %>
+
+<% @users.each do |user| %>
+  <% if user != current_user %>
+    <p>Username: <%= user.username %></p>
+    <p>Email: <%= user.email %></p>
+    <p>Phone: <%= user.phone %></p>
+    <%= link_to 'view profile', users_show_path(user) %>
+    |
+    <%= logged_in_message_link user %>
+    |
+    <%= link_to 'Revisar sus reviews', reviews_show_path(user) %>
+  <% end %>
+
+<% end %>
+
+<p>
+  <%= link_to 'Return Home', home_path %>
+</p>

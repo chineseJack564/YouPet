@@ -1,0 +1,65 @@
+# The behavior of RuboCop can be controlled via the .rubocop.yml
+# configuration file. It makes it possible to enable/disable
+# certain cops (checks) and to alter their behavior if they accept
+# any parameters. The file can be placed either in your home
+# directory or in some project directory.
+#
+# RuboCop will start looking for the configuration file in the directory
+# where the inspected file is and continue its way up to the root directory.
+#
+# See https://docs.rubocop.org/rubocop/configuration
+require:
+  - rubocop-performance 
+  - rubocop-rails
+  - rubocop-rspec
+AllCops:
+  Exclude:
+    - 'd/**/*'
+    - 'script/**/*'
+    - 'bin/**/*'
+    - db/schema.rb
+    - db/seeds.rb
+    - node_modules/node-sass/src/libsass/contrib/libsass.spec
+    - node_modules/node-sass/src/libsass/extconf.rb
+    - 'spec/**/*'
+    - 'app/jobs/*'
+    - db/migrate/20210621191847_add_cord_to_posts.rb
+    - app/channels/chat_channel.rb
+  NewCops: enable
+Layout/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+    - spec/**/*
+Metrics/MethodLength:
+  Max: 40
+  Exclude:
+    - db/**/*
+Metrics/AbcSize:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - spec/**/*
+Style/Documentation:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 6
+RSpec/NestedGroups:
+  Max: 4
+RSpec/InstanceVariable:
+  Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/HasAndBelongsToMany:
+  Enabled: false

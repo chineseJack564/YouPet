@@ -1,0 +1,21 @@
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<div class="section breadcrumb-area bg-name-bright <%= dark %>">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-wrapper bg-name-text <%= dark %>">
+                    <h2 class="breadcrumb-title">Create New Post</h2>
+                    <ul  class="align-items-end">
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li><%= link_to 'All post', posts_path%></li>
+                        <li>Create New Post</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%= render 'form' %>

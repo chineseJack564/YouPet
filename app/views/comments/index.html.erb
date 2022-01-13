@@ -1,0 +1,26 @@
+
+<h1>Lista de comentario</h1>
+<table>
+  <tr>
+    <th>Author</th>
+    <th>Titulo</th>
+    <th>contenido</th>
+    <th></th>
+  </tr>
+
+  <% @comment.each do |c| %>
+    <tr>
+      <td><%= c.sender.username %></td>
+      <td><%= c.title %></td>
+      <td><%= c.content %></td>
+      <td><%= link_to 'Show', comments_show_path(c.id) %></td>
+      <% if current_user == c.sender %>
+        <td><%= link_to 'Edit', comments_edit_path(c.id) %></td>
+        <td><%= link_to 'Eliminar', comments_delete_path(c.id), method: :delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Dejar nuevo comentario', comments_new_path %>
+<p><%= link_to 'Volver al Menu pricipal', home_path %></p>

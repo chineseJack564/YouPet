@@ -1,0 +1,6 @@
+<%= form_with(model: [comment, comment.replies.build], local:true) do |form| %>
+<div class="input-group mb-3">
+    <%= form.text_area :content, class:"form-control", rows:"1", placeholder: "Reply here"%>
+    <%= form.submit "Responde", class:"btn btn-light"%>
+</div>
+<% end %>

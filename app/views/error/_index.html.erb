@@ -1,0 +1,43 @@
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+<!-- Breadcrumb Area Start -->
+    <div class="section breadcrumb-area bg-name-bright <%=dark%>">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center bg-name-text <%=dark%>">
+                    <div class="breadcrumb-wrapper">
+                        <h2 class="breadcrumb-title">Error 404</h2>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li>Error 404</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb Area End -->
+
+    <!-- Error 404 Section Start -->
+    <div class="section section-margin">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 ">
+
+                    <!-- Error Form Start -->
+                    <div class="error_form bg-name-text <%=dark%>">
+                        <h1 class="title">404</h1>
+                        <h2 class="sub-title">Oops! PAGE NOT FOUND</h2>
+                        <p>Sorry, but the page you are looking for does not exist, has been<br> removed, changed name, or is temporarily unavailable.</p>
+                        <%= link_to 'Back to home page', root_path, class: "btn btn-primary btn-hover-dark rounded-0 m-t-40"%>
+                    </div>
+                    <!-- Error Form End -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Error 404 Section End -->

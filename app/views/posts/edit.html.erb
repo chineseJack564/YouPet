@@ -1,0 +1,28 @@
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<%if @post.user == current_user%>
+<!-- Breadcrumb Area Start -->
+    <div class="section breadcrumb-area bg-name-bright <%= dark %>">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="breadcrumb-wrapper">
+                        <h2 class="breadcrumb-title">Editing Post: <%= @post.title %></h2>
+                        <ul class="align-items-end">
+                            <li><%= link_to 'Home', root_path%></li>
+                            <li><%= link_to 'All post', posts_path%></li>
+                            <li><%= link_to  @post.title , post_path(@post)%></li>
+                            <li>Edit Post</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Breadcrumb Area End -->
+<%= render 'form' %>
+<% else %>
+<%= render 'error/index' %>
+<% end %>

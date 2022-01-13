@@ -1,0 +1,20 @@
+<h4>Edit Message</h4>
+
+<%if Message.find(params[:id]).sender == current_user %>
+
+  <h5>Original message:
+    <%= Message.find(params[:id]).body %>
+  </h5>
+
+  <%= form_with model: @message, method: :patch, url: messages_update_path do |form| %>
+    <p><%= form.text_area :body, size: '50x10' %></p>
+    <p><%= form.submit 'Confirm' %></p>
+    <%= link_to "Back", :back %>
+  <% end %>
+
+<% else %>
+
+  <p> No tienes acesso a esta pagina </p>
+  <%= link_to "Back", home_path %>
+
+<% end %>

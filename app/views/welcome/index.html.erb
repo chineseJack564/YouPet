@@ -1,0 +1,372 @@
+
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+
+<!-- Hero/Intro Slider Start -->
+<div class="section">
+    <div class="hero-slider swiper-container">
+        <div class="swiper-wrapper">
+
+            <div class="hero-slide-item swiper-slide">
+                <div class="hero-slide-bg">
+                    <%= image_tag "slider1-1.png" %>
+                </div>
+                <div class="container">
+                    <div class="hero-slide-content text-start rellax" data-rellax-speed="-5">
+                        <h5 class="sub-title">The pet you dreamed is here</h5>
+                        <h2 class="title m-0">YouPet</h2>
+                        <p class="ms-0">The only place you need to find your perfect pet.</p>
+                        <%= link_to 'View posts', posts_path, class: "btn btn-dark btn-hover-primary"%>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-slide-item swiper-slide">
+                <div class="hero-slide-bg">
+                    <%= image_tag "slider1-2.png" %>
+                </div>
+                <div class="container">
+                    <div class="hero-slide-content text-center text-md-end">
+                        <h5 class="sub-title">The pet you dreamed is here</h5>
+                        <h2 class="title m-0">YouPet</h2>
+                        <p>The only place you need to find your perfect pet.</p>
+                        <%= link_to 'View posts', posts_path, class: "btn btn-dark btn-hover-primary"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swiper Pagination Start -->
+        <div class="swiper-pagination d-lg-none"></div>
+        <!-- Swiper Pagination End -->
+
+        <!-- Swiper Navigation Start -->
+        <div class="home-slider-prev swiper-button-prev main-slider-nav d-lg-flex d-none nav-b1"><i class="fas fa-chevron-left"></i></div>
+        <div class="home-slider-next swiper-button-next main-slider-nav d-lg-flex d-none nav-b2"><i class="fas fa-chevron-right"></i></div>
+        <!-- Swiper Navigation End -->
+    </div>
+</div>
+<!-- Hero/Intro Slider End -->
+
+<!-- Banner Section Start -->
+<div class="section section-margin">
+    <div class="container">
+        <!-- Banners Start -->
+        <div class="row row-cols-md-3 row-cols-sm-2 row-cols-1 m-b-n30">
+            
+            <!-- Banner Start -->
+            <div class="col m-b-30" data-aos="fade-up" data-aos-duration="1000">
+                
+                <a href="/posts?utf8=✓&q%5Bspecie_eq%5D=0&commit=Apply+filter" class="banner hover-style">
+                    <%= image_tag("sdog.png", :class => "Banner Image") %>
+                </a>
+            </div>
+            <!-- Banner End -->
+
+            <!-- Banner Start -->
+            <div class="col m-b-30" data-aos="fade-up" data-aos-duration="1300">
+                <a href="/posts?utf8=✓&q%5Bspecie_eq%5D=1&commit=Apply+filter" class="banner hover-style">
+                    <%= image_tag("scat.png", :class => "Banner Image") %>
+                </a>
+            </div>
+            <!-- Banner End -->
+
+            <!-- Banner Start -->
+            <div class="col m-b-30" data-aos="fade-up" data-aos-duration="1600">
+                <a href="/posts?utf8=✓&q%5Bspecie_eq%5D=4&commit=Apply+filter" class="banner hover-style">
+                    <%= image_tag("sfish.png", :class => "Banner Image") %>
+                </a>
+            </div>
+            <!-- Banner End -->
+
+        </div>
+        <!-- Banners End -->
+    </div>
+</div>
+<!-- Banner Section End -->
+
+
+<!-- Banner Section Start -->
+<div class="section section-margin">
+    <div class="container">
+
+        <!-- Banners Start -->
+        <div class="row m-b-n30">
+
+            <!-- Banner Start -->
+            <div class="col-md-6 col-12 m-b-30" data-aos="fade-up" data-aos-duration="1000">
+                <a href="/posts?utf8&q%5Bpost_type_eq%5D=0&commit=Apply+filter" class="banner">
+                    <%= image_tag "banner1.png", class:"fit-image" %>
+                </a>
+            </div>
+            <!-- Banner End -->
+
+            <!-- Banner Start -->
+            <div class="col-md-6 col-12 m-b-30" data-aos="fade-up" data-aos-duration="1400">
+                <a href="/posts?utf8&q%5Bpost_type_eq%5D=1&commit=Apply+filter" class="banner">
+                    <%= image_tag "banner2.png", class:"fit-image" %>
+                </a>
+            </div>
+            <!-- Banner End -->
+
+        </div>
+        <!-- Banners End -->
+
+    </div>
+</div>
+<!-- Banner Section End -->
+
+
+<!-- Blog Section Start -->
+<div class="section section-margin-bottom">
+    <div class="container">
+
+        <div class="row" data-aos="fade-up" data-aos-duration="1000">
+            <div class="col-12">
+                <div class="section-title text-center">
+                    <h2 class="title">From Our Customers</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-lg-3 row-cols-sm-2 row-cols-1 m-b-n40 bg-name-text <%= dark %>">
+
+            <div class="col m-b-40" data-aos="fade-up" data-aos-duration="1000">
+                <!-- Single Blog Start -->
+                <div class="single-blog-wrapper">
+
+                    <!-- Blog Thumb Start -->
+                    <div class="blog-thumb thumb-effect">
+                        <a class="image">
+                            <%= image_tag "p1.jpg" ,class:"fit-image img-buffer2"%>
+                        </a>
+                    </div>
+                    <!-- Blog Thumb End -->
+
+                    <!-- Blog Content Start -->
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <ul>
+                                <li><span>By</span>Benja Albert</li>
+                            </ul>
+                        </div>
+                        <h2 class="blog-title"><a>Another love of my love</a></h2>
+                        <p>With YouPet, I found another love of my love (besides Sofi). But now my girlfrind is mad at my dog because I spend more time with him hahahah</p>
+                    </div>
+                    <!-- Blog Content End -->
+
+                </div>
+                <!-- Single Blog End -->
+            </div>
+
+            <div class="col m-b-40" data-aos="fade-up" data-aos-duration="1300">
+                <!-- Single Blog Start -->
+                <div class="single-blog-wrapper">
+
+                    <!-- Blog Thumb Start -->
+                    <div class="blog-thumb thumb-effect">
+                        <a class="image">
+                            <%= image_tag "p2.jpg", class:"fit-image img-buffer2"%>
+                        </a>
+                    </div>
+                    <!-- Blog Thumb End -->
+
+                    <!-- Blog Content Start -->
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <ul>
+                                <li><span>By</span>Belencita</li>
+                            </ul>
+                        </div>
+                        <h2 class="blog-title"><a>More cats in my house</a></h2>
+                        <p>I must admit, pets are an adictive experience, now I have 4 cats in my house, all adopted from YouPet!</p>
+                    </div>
+                    <!-- Blog Content End -->
+
+                </div>
+                <!-- Single Blog End -->
+            </div>
+
+            <div class="col m-b-40" data-aos="fade-up" data-aos-duration="1300">
+                <!-- Single Blog Start -->
+                <div class="single-blog-wrapper">
+
+                    <!-- Blog Thumb Start -->
+                    <div class="blog-thumb thumb-effect">
+                        <a class="image">
+                            <%= image_tag "p3.jpg", class:"fit-image img-buffer2"%>
+                        </a>
+                    </div>
+                    <!-- Blog Thumb End -->
+
+                    <!-- Blog Content Start -->
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <ul>
+                                <li><span>By</span>Jack Chen</li>
+                            </ul>
+                        </div>
+                        <h2 class="blog-title"><a>YouPet helps me a lot!</a></h2>
+                        <p>I can't thank more YouPet. Last year I broke up and to forget my ex, I bought a dog here. Guess what, last month a girl talked to me on the street cause she found my dog cute, and now we are going out!</p>
+                    </div>
+                    <!-- Blog Content End -->
+
+                </div>
+                <!-- Single Blog End -->
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- Blog Section End -->
+<!-- Testimonial Section Start -->
+<div class="section bg-name-bright section-padding section-margin <%= dark %>">
+    <div class="container bg-name-text <%= dark %>">
+        <div class="row">
+            <div class="col-12">
+
+                <!-- Testimonial Carousel Start -->
+                <div class="testimonial-carousel">
+
+                    <!-- Testimonial Gallery Top Start -->
+                    <div class="swiper-container testimonial-gallery-top" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="swiper-wrapper">
+
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+
+                                <!-- Testimonial Content Start -->
+                                <div class="testimonial-content text-center">
+                                    <p>Ever since I got my pet from YouPet, I don't feel lonely anymore. Now I have the best company of all time! I hope you can find your soul mate here at YouPet!</p>
+                                </div>
+                                <!-- Testimonial Content End -->
+
+                            </div>
+                            <!-- Single Swiper Slide End -->
+
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+
+                                <!-- Testimonial Content Start -->
+                                <div class="testimonial-content text-center">
+                                    <p>I still remember how lonely I felt when my boyfriend left me last year. I decided to make a change in my life, and that brought me to my pet. I adopted my Kitty here and now she is the only love I need in life!</p>
+                                </div>
+                                <!-- Testimonial Content End -->
+
+                            </div>
+                            <!-- Single Swiper Slide End -->
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+
+                                <!-- Testimonial Content Start -->
+                                <div class="testimonial-content text-center">
+                                    <p>YouPet is so easy to use, I could never imagined I'd get a pet online at my age, but my son told me about this page and it helped me get a great dog!</p>
+                                </div>
+                                <!-- Testimonial Content End -->
+
+                            </div>
+                            <!-- Single Swiper Slide End -->
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+
+                                <!-- Testimonial Content Start -->
+                                <div class="testimonial-content text-center">
+                                    <p>My kids have been asking for years to get a puppy. I was so busy with my work that choosing a pet could be so difficult sometimes. But YouPet changed all of this, it's quick and easy, I already got 2 dogs here and now all of my family is happy!</p>
+                                </div>
+                                <!-- Testimonial Content End -->
+
+                            </div>
+                            <!-- Single Swiper Slide End -->
+                        </div>
+
+                    </div>
+                    <!-- Testimonial Gallery Top End -->
+
+                    <!-- Testimonial Gallery Thumb Start -->
+                    <div class="swiper-container testimonial-gallery-thumbs" data-aos="fade-up" data-aos-duration="1500">
+                        <div class="swiper-wrapper">
+
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+                                <!-- Testimonial Thumb Start -->
+                                <div class="testimonial-thumb text-center">
+                                    <%= image_tag "t1.png" %>
+                                    <h3 class="thumb-title">Jonathon Jhon</h3>
+                                    <h6 class="thumb-subtitle">Customer</h6>
+                                </div>
+                                <!-- Testimonial Thumb End -->
+                            </div>
+                            <!-- Single Swiper Slide End -->
+
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+                                <!-- Testimonial Thumb Start -->
+                                <div class="testimonial-thumb text-center">
+                                    <%= image_tag "t2.png" %>
+                                    <h3 class="thumb-title">Cristal Jerry</h3>
+                                    <h6 class="thumb-subtitle">Customer</h6>
+                                </div>
+                                <!-- Testimonial Thumb End -->
+                            </div>
+                            <!-- Single Swiper Slide End -->
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+                                <!-- Testimonial Thumb Start -->
+                                <div class="testimonial-thumb text-center">
+                                    <%= image_tag "t3.png" %>
+                                    <h3 class="thumb-title">Ben Albert</h3>
+                                    <h6 class="thumb-subtitle">Customer</h6>
+                                </div>
+                                <!-- Testimonial Thumb End -->
+                            </div>
+                            <!-- Single Swiper Slide End -->
+                            <!-- Single Swiper Slide Start -->
+                            <div class="swiper-slide">
+                                <!-- Testimonial Thumb Start -->
+                                <div class="testimonial-thumb text-center">
+                                    <%= image_tag "t4.png" %>
+                                    <h3 class="thumb-title">Jack and his family</h3>
+                                    <h6 class="thumb-subtitle">Customer</h6>
+                                </div>
+                                <!-- Testimonial Thumb End -->
+                            </div>
+                            <!-- Single Swiper Slide End -->
+
+                        </div>
+
+                        <!-- Add Pagination -->
+                        <div class="swiper-container d-flex justify-content-center"><div class="swiper-pagination"></div></div>
+
+                    </div>
+                    <!-- Testimonial Gallery Thumb End -->
+
+                </div>
+                <!-- Testimonial Carousel End -->
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial Section End -->
+
+
+
+
+
+
+
+<!-- Scroll Top Start -->
+<a href="#" class="scroll-top show" id="scroll-top">
+    <i class="arrow-top fas fa-angle-double-up"></i>
+    <i class="arrow-bottom fas fa-angle-double-up"></i>
+</a>
+<!-- Scroll Top End -->
+
+
+
+

@@ -1,0 +1,73 @@
+
+<% if current_user %>
+<% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+<div class="product_tab_content m-t-40 p-3 border">
+<div class="single-review d-flex m-b-20">
+    <!-- comment from Start -->
+    <div class="review_thumb">
+        <%if comment.sender.avatar.attached? %>
+            <%=image_tag comment.sender.avatar, class: "comment-img" %>
+        <% else %>
+            <%=image_tag '/user.png', class: "comment-img" %>
+        <% end %>
+        <div>From:
+            <% if comment.sender == current_user %>
+                <%= link_to 'Me', users_show_path(comment.sender), class: 'username-link2' %>
+            <% else %>
+                <%= link_to comment.sender.username, users_show_path(comment.sender), class: 'username-link2' %>
+            <% end %>
+        </div>
+    </div>
+    <!-- comment from End -->
+    <!-- Review Details Start -->
+    <div class="review_details">
+        <div class="review_info m-b-10 bg-name-text <%= dark %>">
+            <%# title %>
+            <div class="review-title-date d-flex">
+                <h5 class="title"><strong><%= comment.title %> - </strong> </h5><span><%= comment.created_at.to_s(:short) %></span>
+            </div>
+            <p class="content-comment"><%= comment.content %></p>
+            <div class="m-b-5">
+            <% if comment.sender == current_user %> <%# change %>
+            <%= link_to 'Edit ', edit_post_comment_path(comment.post, comment) ,class: 'edit-letter'%>-
+            <%= link_to ' Delete', [comment.post, comment] ,class: 'del-letter', method: :delete %>
+            <% end %>
+            
+            </div>
+            <%# reply start %>
+            <% if comment.replies.length != 0 %>
+                <% comment.replies.each_with_index do |r,index| %>
+                
+                <% if index != comment.replies.length%>
+                    <div class="single-review d-flex m-b-20">
+                    <div class="review_thumb">
+                        From: <%= link_to r.sender.username, users_show_path(r.sender), class: 'username-link2' %>
+                    </div>
+                     <div class="review_details">
+                        <div class="review_info m-b-10">
+                            <p class="content-comment"><%= r.content %></p>
+                            <% if current_user == r.sender %>
+                                <%= link_to 'Edit '.html_safe, edit_comment_reply_path(comment, r), class:"edit-letter" %>-
+                                <%= link_to ' Delete'.html_safe, [comment, r], class:"del-letter", method: :delete %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                <% end %>
+                
+                <% end %>
+            <% end %>
+            
+        </div>
+    </div>
+    <!-- Review Details end -->
+    
+</div>
+<%if Post.find(params[:id]).user == current_user %>
+    <%= render partial: 'replies/form', locals: {:comment => comment} %>
+<% end %>
+</div>
+

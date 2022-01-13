@@ -1,0 +1,14 @@
+
+$('.message-input-own').val('');
+
+
+  <% @message.recipient.increment!('unread_messages') %>
+  <% if @chat.recipient_id == @message.recipient_id %>
+  <%   @chat.increment!('recipient_unreads') %>
+  <% else %>
+  <%   @chat.increment!('sender_unreads') %>
+  <% end %>
+
+<% msg = render @message, refresh: false %>
+<% MessageBroadcastJob.perform_later(msg, @message) %>
+

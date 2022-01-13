@@ -1,0 +1,271 @@
+.esp-star-btn:hover .star{
+    transform: translateY(-0.2em);
+    color: #c5d417;
+}
+.star{
+    color: #ffa260;
+    transition: all 0.4s;
+}
+
+.btn{
+    margin-bottom: 6px;
+    margin-top: 3px;
+}
+
+.btn-msg2{
+    background: none;
+    color: #9442d6 !important;
+    border: 2px solid;
+    padding: 2em, 3em;
+    font-size: 1em;
+    transition: all 0.25s;
+  }
+
+  .btn-msg2:hover{
+    border-color: #51cac4;
+    color: #F8F5F1;
+    box-shadow: 0 0.8em 0.5em -0.4em #51cac4;
+    transform: translateY(-0.25em);
+  }
+
+  .btn-msg{
+    background: none;
+    color: #3844af !important;
+    border: 2px solid;
+    padding: 2em, 3em;
+    font-size: 1em;
+    transition: all 0.25s;
+  }
+  
+  .btn-msg:hover{
+    border-color: #347edf !important;
+    color: #d4780e !important;
+    box-shadow: 0 0.5em 0.5em -0.4em #347edf !important;
+    transform: translateY(-0.25em);
+  }
+
+.user-img{
+    margin-left: 1em;
+  display: flex;
+  align-items: center;
+  width: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+
+.user-img2{
+    width: 5em;
+}
+.postlink2{
+    color: #ffa260;
+    text-decoration-line: none;
+    transition: all 0.2s;
+}
+
+.postlink2:hover{
+    color: #2724d3;
+}
+
+.rev_star{
+    margin-left: 0.5em;
+    padding-left: 0.5em;
+}
+
+.username-link2{
+    color: #f05f33;
+    text-decoration-line: none;
+    transition: all 0.2s;
+}
+
+.username-link2:hover{
+    color: #18e44b;
+}
+
+.rev-date{
+    font-size: 6px;
+}
+
+.conten-rev{
+    font-size: 20px;
+    font-weight: 600;
+    color: #1d9e62;
+}
+
+.btn-light{
+    background-color: #a0c1f3;
+}
+
+.btn-light:hover{
+    background-color: #5f95e6;
+}
+
+input[type="checkbox"] {
+    display: unset;
+}
+
+
+.rev-container:nth-of-type(2n) {
+    background-color: rgba(189, 191, 194, 0.295);
+}
+
+.img-list{
+    width: 100px !important;
+}
+
+.product-title{
+    font-size: 35px !important;
+}
+
+.inventroy-title{
+    font-size: 25px !important;
+}
+.inventory-varient{
+    font-size: 25px !important;
+    color: #e75124 !important;
+}
+.pay_icon{
+    font-size: 30px;
+}
+
+.comment-img{
+  display: flex;
+  align-items: center;
+  width: 2.5em !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-comment{
+    margin-bottom: 0.5px;
+}
+
+.edit-letter{
+    color: rgb(24, 167, 24);
+    transition: all 0.1s;
+    font-size: 15px;
+}
+
+.edit-letter:hover{
+    font-size: 16px;
+    color: green;
+}
+
+.del-letter{
+    color: rgb(175, 21, 72);
+    transition: all 0.1s;
+    font-size: 15px;
+}
+
+.del-letter:hover{
+    font-size: 16px;
+    color: rgb(175, 35, 89);
+}
+
+.btn-success{
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+    color: whitesmoke;
+    transition: all 0.2s;
+}
+
+.btn-success:hover{
+    background-color: #4db484 !important;
+    border-color: #4db484 !important;
+    color: rgb(7, 7, 7);
+}
+
+.btn-esp{
+    background: none;
+    color: #972cc2 !important;
+    border: 2px solid #972cc2 !important;
+    padding: 2em, 3em;
+    font-size: 1em;
+    transition: all 0.25s;
+  }
+  
+  .btn-esp:hover{
+    border-color: #51cac4;
+    color: #e79447;
+    box-shadow: 0 0.8em 0.5em -0.4em #51cac4;
+    transform: translateY(-0.25em);
+  }
+
+  .btn-msg4{
+    background: none;
+    color: #eb8339;
+    border: 2px solid;
+    padding: 2em, 3em;
+    font-size: 1em;
+    transition: all 0.25s;
+  }
+  
+  .btn-msg4:hover{
+    border-color: #e75c92;
+    color: #e44adc;
+    box-shadow: 0 0.5em 0.5em -0.4em #e75c92;
+    transform: translateY(-0.25em);
+  }
+
+  .shop_wrapper.grid_4 .product .thumb img, .shop_wrapper.grid_5 .product .thumb img, .shop_wrapper.grid_3 .product .thumb img {
+    width: 100%;
+    max-height: 278px;
+    min-height: 266px;
+  }
+
+.label-buffer{
+    font-size: 20px !important;
+}
+
+.login-link-buffer:hover{
+    color: rgb(46, 33, 223);
+}
+
+.link-buffer:hover{
+    color: rgb(241, 138, 41);
+}
+
+.user-bt-buffer{
+    width: 15em;
+}
+
+.btn-secondary{
+    background-color: #132a5c;
+    color: white;
+}
+
+.p-register{
+    border-top: 1px solid rgba(93, 92, 94, 0.39);
+}
+
+.admin-btn{
+    background-color: rgb(230, 135, 27);
+    transition: all 0.2s;
+}
+.admin-btn:hover{
+    background-color: rgb(20, 144, 216);
+}
+
+.img-buffer{
+    max-height: 16vw !important;
+    min-height: 266px !important;
+}
+
+.text-numer{
+    font-family: "Montserrat";
+}
+
+.nav-b1{
+    margin-left: 50px !important;
+}
+
+.nav-b2{
+    margin-right: 50px !important;
+}
+
+.img-buffer2{
+    min-height: 242px !important;
+}
+
+.title{color: #5f95e6 !important;}

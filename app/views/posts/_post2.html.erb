@@ -1,0 +1,41 @@
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<div class="col m-b-40">
+<!-- Single post Start -->
+<div class="single-blog-wrapper ">
+
+    <!-- Post Thumb Start -->
+    <div class="blog-thumb thumb-effect">
+        <a class="image">
+             <% if post.avatar_main.attached? %>
+                    <%= image_tag post.avatar_main, class: "fit-image img-buffer"%>
+            <%else%>
+                <img src="/default_pic.jpg" class="fit-image img-buffer">
+            <% end %>
+        </a>
+    </div>
+    <!-- Post Thumb End -->
+
+    <div class="row align-items-center">
+    <!-- Post Content Start -->
+    <div class="blog-content col-8">
+        <h2 class="blog-title bg-name-text <%= dark %>"><%= link_to post.title, post_path(post)%></h2>
+        <% if post.user == current_user %>
+        <p class="bg-name-text <%= dark %>">Total Orders: <%= post.orders.length %></p>
+        <% end %>
+        <%= link_to 'View post', post_path(post), class: "link-buffer bg-name-text #{dark}"%>
+    </div>
+    <!-- Post Content End -->
+    <%# Post action %>
+    <div class="col-4 d-flex flex-column justify-content-center align-items-end">
+    <% if post.user == current_user %>
+        <%= link_to '<i class="far fa-edit"></i>'.html_safe, edit_post_path(post), class:"btn btn-light" %>
+        <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, post_path(post), class:"btn btn-danger", method: :delete %>
+    <% end %>
+    </div>
+    </div>
+</div>
+<!-- Post Blog End -->
+</div>

@@ -1,0 +1,69 @@
+:root {
+  --lightmode-secondary: #f6ab49;
+  --lightmode-main: #ffffff;
+  --lightmode-bright: #f4f4f4;
+  --lightmode-light: #ebebeb;
+  --lightmode-text: black;
+
+  --darkmode-secondary: #272727;
+  --darkmode-main: #121212;
+  --darkmode-bright: #363636;
+  --darkmode-light: #404040;
+  --darkmode-text: rgb(240, 240, 240);
+}
+
+body, .header-sticky {
+  background-color: var(--lightmode-main);
+}
+
+.bg-name-bright {
+  background-color: var(--lightmode-bright);
+}
+
+.bg-name-light {
+  background-color: var(--lightmode-light);
+}
+
+.bg-name-primary {
+  background-color: var(--lightmode-secondary);
+}
+
+.bg-name-text {
+  color: var(--lightmode-text);
+}
+
+body.dark-own, .header-sticky.dark-own {
+  background-color: var(--darkmode-main);
+}
+
+.header-sticky.dark-own {
+  box-shadow: 0 2px 2px var(--darkmode-bright);
+  color: white !important;
+}
+
+.bg-name-primary.dark-own {
+  background-color: var(--darkmode-secondary);
+}
+
+.bg-name-bright.dark-own {
+  background-color: var(--darkmode-bright);
+}
+
+.bg-name-light.dark-own {
+  background-color: var(--darkmode-light);
+}
+
+.bg-name-text.dark-own {
+  color: var(--darkmode-text);
+}
+
+
+
+.dark-own ::-webkit-scrollbar-track {
+  background-color: var(--darkmode-light);
+}
+
+.dark-own ::-webkit-scrollbar-thumb {
+  background: var(--darkmode-secondary);
+  border: 5px solid var(--darkmode-bright);
+}

@@ -1,0 +1,31 @@
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+<!-- Breadcrumb Area Start -->
+<div class="section breadcrumb-area bg-name-bright <%=dark%>">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center bg-name-text <%=dark%>">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="breadcrumb-title">New Review for <%= @recipient.username %></h2>
+                    <ul class="align-items-end">
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li><%= link_to 'Perfil of: '+ @recipient.username , users_show_path(@recipient)%></li>
+                        <li>New review</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<div class="section section-margin bg-name-text <%=dark%>">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 col-md-8 m-auto">
+                    <%= render 'form' %>
+                </div>
+            </div>
+        </div>
+</div>
+

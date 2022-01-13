@@ -1,0 +1,302 @@
+    <% if current_user %>
+        <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+    <% end %>
+    
+
+    <% if @user != current_user %>
+        <% old_reviews = 0 %>
+        <% order_finished = 0 %>
+        <% @user.posts.each do |p|%>
+            <% p.orders.each do |o|%>
+            <% if o.user.id == current_user.id && o.status == 'finished'%>
+                <% order_finished += 1 %>
+            <% end%>
+            <% end%>
+        <% end%>
+        <% current_user.posts.each do |p|%>
+            <% p.orders.each do |o|%>
+            <% if o.user.id == @user.id && o.status == 'finished'%>
+                <% order_finished += 1 %>
+            <% end%>
+            <% end%>
+        <% end%>
+        <% @reviews = Review.where(recipient: @user) %>
+        <% @reviews.each do |r|%>
+            <% if r.sender == current_user%>
+            <% old_reviews += 1 %>
+            <% end%>
+        <% end%>
+    <!-- info Area Start -->
+        <div class="section breadcrumb-area bg-name-bright <%= dark %>">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="breadcrumb-wrapper bg-name-text <%= dark %>">
+                                <h2 class="breadcrumb-title ">Profile of: <%= @user.username %></h2>
+                                <ul>
+                                    <li><%= link_to 'Home', root_path%></li>
+                                    <li>User Account</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <%if notice %>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=notice%></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <% end %>
+                </div>
+        </div>    
+    <!-- info Area Stop-->
+
+    <!-- My Account Section Start -->
+    <div class="section section-margin">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                <!-- My Account Page Start -->
+                <div class="myaccount-page-wrapper">
+                <div class="row">
+                    <!-- My Account Tab Menu Start -->
+                    <div class="col-lg-3 col-md-4">
+                        <div class="myaccount-tab-menu nav bg-name-bright <%= dark %>" role="tablist">
+                            <a href="#info" class="active" data-bs-toggle="tab"><i class="fas fa-id-card bg-name-text <%= dark %>"></i>
+                                <span class="bg-name-text <%= dark %>">Information</span> </a>
+                            <a href="#reviews" data-bs-toggle="tab" class="bg-name-text <%= dark %>"><i class="fas fa-star"></i> Reviews</a>
+                            <a href="#posts" data-bs-toggle="tab" class="bg-name-text <%= dark %>"><i class="fas fa-file-alt"></i> Post</a>
+                        </div>
+                    </div>
+                    <!-- My Account Tab Menu End -->
+
+                    <!-- My Account Tab Content Start -->
+                    <div class="col-lg-9 col-md-8">
+                        <div class="tab-content" id="myaccountContent">
+                            <!-- info Tab Content Start -->
+                                    <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                        <div class="myaccount-content">
+                                            <h3 class="title">Information of <%= @user.username %></h3>
+                                            <div class="welcome">
+                                                <div class="row">
+                                                <!--picture -->
+                                                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                                        <%if @user.avatar.attached? %>
+                                                        <%=image_tag @user.avatar, class: "user-img" %>
+                                                        <% else %>
+                                                        <%=image_tag '/user.png', class: "user-img" %>
+                                                        <% end %>
+                                                    </div>
+                                                    <div class="col-md-5 bg-name-text <%= dark %>">
+                                                        <p><i class="fas fa-user-circle icon-marg"></i> Username: <%= @user.username %></p>
+                                                        <p class="text-numer"><i class="far fa-envelope-open icon-marg"></i> Mail:  <%= @user.email %></p>
+                                                        <p class="text-numer"><i class="fas fa-mobile-alt icon-marg"></i> Phone: <%= @user.phone %></p>
+                                                    </div>
+                                                    <div class="col-md-4 d-flex flex-column justify-content-around">
+                                                    <!-- buttons-->
+                                                        <%if (old_reviews < order_finished && order_finished > 0)%>
+                                                        <div class="esp-star-btn align-self-center">
+                                                        <%= link_to '<div class="star"><i class= "fas fa-star"></i></div> Review Me'.html_safe, reviews_new_path(@user), class: "btn btn-msg2"%>
+                                                        </div>
+                                                        <%end%>
+                                                        <% if current_user %>
+                                                        <% able_send = 0 %>
+                                                        <% @user.posts.each do |p|%>
+                                                        <% p.orders.each do |o|%>
+                                                        <% if o.user.id == current_user.id && (o.status != 'pending' && o.status != 'rejected') %>
+                                                            <% able_send = 1 %>
+                                                            <% break%>
+                                                        <% end%>
+                                                        <%if able_send == 1%>
+                                                            <%break%>
+                                                        <% end %>
+                                                        <% end%>
+                                                        <% end%>
+                                                        <% if able_send == 0%>
+                                                            <% current_user.posts.each do |p|%>
+                                                            <% p.orders.each do |o|%>
+                                                            <% if o.user.id == @user.id && (o.status != 'pending' && o.status != 'rejected') %>
+                                                                <% able_send = 1 %>
+                                                                <%break%>
+                                                            <% end%>
+                                                            <%if able_send == 1%>
+                                                                <%break%>
+                                                            <% end %>
+                                                            <% end%>
+                                                            <% end%>
+                                                        <% end %>
+                                                    
+                                                        <% if able_send == 0 %>
+                                                            <a href="<%=chats_create_path(current_user, @user)%>" data-remote='true' type="button" class="btn btn-msg align-self-center" ><i class="fas fa-comments"></i> Send Message</a>
+                                                        <% end %>
+                                                    <% end %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <!-- info Tab Content End -->
+                            <!-- review Tab Content start -->
+                            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                <div class="myaccount-content">
+                                    <h3 class="title">Recent Reviews</h3>
+                                    <%= render @recieved_reviews %>
+                                </div>
+                            </div>
+                            <!-- review Tab Content end -->
+                            <!-- post Tab Content start -->
+                            <div class="tab-pane fade" id="posts" role="tabpanel">
+                                <div class="myaccount-content">
+                                    <h3 class="title">Recent Posts</h3>
+                                    <div class="row row-cols-lg-2 row-cols-sm-1 row-cols-1 m-b-n40">
+                                    <% @user.posts.each do |p| %>
+                                        <%= render 'posts/post2',  post: p%>
+                                    <% end %>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <!-- post Tab Content start -->
+                        </div>
+                    </div>
+                    <!-- My Account Tab Content end -->
+                        </div>
+                    </div>
+                    <!-- My Account Page end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- My Account Section end -->
+    <%# My profile %>
+    <% else %>
+    <!-- info Area Start -->
+        <div class="section breadcrumb-area bg-name-bright <%= dark %>">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="breadcrumb-wrapper bg-name-text <%= dark %>">
+                                <h2 class="breadcrumb-title">My profile</h2>
+                                <ul>
+                                    <li><%= link_to 'Home', root_path%></li>
+                                    <li>My profile</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <%if notice %>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong><%=notice%></strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <% end %>
+                </div>
+        </div>    
+    <!-- info Area Stop-->
+    <!-- My Account Section Start -->
+    <div class="section section-margin">
+        <div class="container">
+            
+            <div class="row">
+                <div class="col-lg-12">
+                <!-- My Account Page Start -->
+                <div class="myaccount-page-wrapper">
+                <div class="row">
+                    <!-- My Account Tab Menu Start -->
+                    <div class="col-lg-3 col-md-4">
+                        <div class="myaccount-tab-menu nav bg-name-bright <%= dark %>" role="tablist">
+                            <a href="#info" class="active" data-bs-toggle="tab"><i class="fas fa-id-card bg-name-text <%= dark %>"></i>
+                                <span class="bg-name-text <%= dark %>">Information</span> </a>
+                            <a href="#reviews" data-bs-toggle="tab" class="bg-name-text <%= dark %>"><i class="fas fa-star"></i> Reviews</a>
+                            <a href="#posts" data-bs-toggle="tab" class="bg-name-text <%= dark %>"><i class="fas fa-file-alt"></i> Post</a>
+                            <a href="#orders" data-bs-toggle="tab" class="bg-name-text <%= dark %>"><i class="fas fa-clipboard"></i> Orders</a>
+                            <%=link_to "<i class='fas fa-edit'></i>Edit my account".html_safe , edit_user_registration_path, class:"bg-name-text #{dark}"%>
+                            <%=link_to "<i class='fas fa-sign-out-alt'></i>Log out".html_safe , destroy_user_session_path, class:"bg-name-text #{dark}", method: :delete %>
+                        </div>
+                    </div>
+                    <!-- My Account Tab Menu End -->
+
+                    <!-- My Account Tab Content Start -->
+                    <div class="col-lg-9 col-md-8">
+                        <div class="tab-content bg-name-bright <%= dark %>" id="myaccountContent">
+                            <!-- Info Tab Content Start -->
+                                <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                    <div class="myaccount-content">
+                                        <h3 class="title">My Information</h3>
+                                        <div class="welcome">
+                                            <p class="bg-name-text <%= dark %>">Hello, <strong><%= @user.username %></strong> (If Not <strong><%= @user.username %></strong>  <%=link_to "Log Out" , destroy_user_session_path, method: :delete %>)</p>
+                                            <div class="row">
+                                                <!--picture -->
+                                                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                                    <%if @user.avatar.attached? %>
+                                                    <%=image_tag @user.avatar, class: "user-img" %>
+                                                    <% else %>
+                                                    <%=image_tag '/user.png', class: "user-img" %>
+                                                    <% end %>
+                                                </div>
+                                                <div class="col-md-8 bg-name-text <%= dark %>">
+                                                    <p><i class="fas fa-user-circle icon-marg "></i> Username: <%= @user.username %></p>
+                                                    <p class="text-numer"><i class="far fa-envelope-open icon-marg"></i> Mail:  <%= @user.email %></p>
+                                                    <p class="text-numer"><i class="fas fa-mobile-alt icon-marg"></i> Phone: <%= @user.phone %></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- Info Tab Content End -->
+                            <!-- Review Tab Content start-->
+                            <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                <div class="myaccount-content">
+                                    <h3 class="title">Recent Recevied Reviews</h3>
+                                        <div class="container"><%= render @recieved_reviews %></div>
+                                    <h3 class="title">Recent Posted Reviews</h3>
+                                        <div class="container"><%= render @posted_reviews %></div>
+                                </div>
+                            </div>
+                            <!-- Review Tab Content End -->
+                            <!-- Post Tab Content start-->
+                            <div class="tab-pane fade" id="posts" role="tabpanel">
+                                <div class="myaccount-content">
+                                    <h3 class="title">My posts</h3>
+                                        <div class="container">
+                                            <div class="row row-cols-lg-2 row-cols-sm-1 row-cols-1 m-b-n40">
+                                                <% @user.posts.each do |p| %>
+                                                <%= render 'posts/post2',  post: p%>
+                                                <% end %>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <!-- Post Tab Content end-->
+                            <!-- Order Tab Content start-->
+                            <div class="tab-pane fade" id="orders" role="tabpanel">
+                                <div class="myaccount-content">
+                                    <h3 class="title">My orders</h3>
+                                        <% @user.orders.each do |o| %>
+                                        <div class="row justify-content-center">
+                                        <div class="col-md-6 review-content text-center bg-name-text <%= dark %>">
+                                            you created an order for <%= link_to o.post.title, post_path(o.post), class: "postlink2"%>
+                                        </div>
+                                        </div>
+                                        <div class="order-b1">
+                                            <%= render o %>
+                                        </div>
+                                        <%end%>
+                                </div>
+                            </div>
+                            <!-- Order Tab Content end-->
+                            <!-- Edit Tab Content start-->
+                            <!-- Edit Tab Content end-->
+                        </div>
+                    </div>
+                    <!-- My Account Tab Content end -->
+                        </div>
+                    </div>
+                    <!-- My Account Page end -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- My Account Section end -->
+    <% end %>
+    

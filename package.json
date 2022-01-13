@@ -1,0 +1,8 @@
+{
+  "name": "proyecto",
+  "private": true,
+  "dependencies": {
+    "aos": "^3.0.0-beta.6",
+    "rellax": "^1.12.1"
+  }
+}

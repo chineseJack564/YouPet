@@ -1,0 +1,31 @@
+
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+
+<h1 class='notif-title-own bg-name-text <%= dark %>'>Notifications</h1>
+
+<div id="notif-all-own" class="bg-name-text <%= dark %>">
+  <% Notification.select { |ntf| ntf.to == current_user }.each do |ntf| %>
+    <div class='notif-container-own' notif=<%= ntf.id %> unread=<%= ntf.unread? %>>
+      <span class='notif-new' style="background: <%= ntf.unread? ? 'var(--lightmode-secondary)' : 'transparent' %>;"></span>
+      <div class='notif-content-own bg-name-light <%= dark %>'>
+        <% unless ntf.user? %>
+          <p class='notif-head-own'>Order status: <%= try_deleted_content ntf %>, with <%= ntf.from.username %></p>
+          <%if ntf.notificator%>
+            <p class='notif-body-own'>Post: <%= ntf.notificator.post.title %></p>
+          <%end%>
+        <% else %>
+          <p class='notif-head-own'>New <%= ntf.notificator_type %> from <%= ntf.from.username %>:</p>
+          <p class='notif-body-own'><%= try_deleted_content ntf %></p>  
+        <% end %>
+      </div>
+      <div class='notif-buttons-own'>
+        <%= link_to '', notifications_show_path(ntf), class: "notif-view-own" %>
+        <%= link_to '', notifications_delete_path(ntf), remote: true, method: :delete, class: "notif-del-own bg-name-bright #{dark}" %>
+      </div>
+    </div>
+  <% end %>
+</div>

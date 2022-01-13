@@ -1,0 +1,60 @@
+<!-- Breadcrumb Area Start -->
+<div class="section breadcrumb-area bg-name-bright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="breadcrumb-title">Edit Comment</h2>
+                    <ul>
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li><%= link_to @post.title , post_path(@post)%></li>
+                        <li>Edit comment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Area End -->
+<div class="section section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-8 m-auto">
+             <%if @comment.sender == current_user%>
+                <%= form_with(model: [@post, @comment] , method: :patch, url: post_comment_url) do |form|%>
+                
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 d-grid">
+                            <label  class="form-label">Comment Title</label>
+                            <%= form.text_area :title ,  class:"form-control", row:"2"%>
+                            <label class="form-label">5 characters as minimum</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 d-grid">
+                            <label  class="form-label">Content</label>
+                            <%= form.text_area :content ,  class:"form-control", row:"2"%>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-2 d-grid">
+                            <%= form.submit "Edit", class: "btn btn-primary btn-lg post-bt-buffer"%>
+                        </div>
+                    </div>
+                </div>
+
+            <% end %>
+            <% else%>
+            <p>No tienes acceso a esta pagina</p>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

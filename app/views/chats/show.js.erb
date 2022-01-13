@@ -1,0 +1,75 @@
+
+$('.notifications-container-own').addClass('show-own');
+
+$('.current-option-container-own').each(function(_, child) {
+  $(child).removeClass('active-option-own');
+});
+
+$('.notifications-container-own').find('.messages-own').addClass('active-option-own');
+
+$('.message-history-shown').css({'display': 'none'});
+$('.message-history-shown').removeClass('message-history-shown');
+
+
+if (!$.trim($('.chat<%= @chat.id %>.message-user-own').html())) {
+
+  var $htmlHead = `<%= j render partial: "chats/chat_names", locals: { chat: @chat } %>`;
+  var $htmlBody = `
+    <div class="message-history-own" id="chat<%= @chat.id %>">
+      <%= j render partial: "messages/message", collection: @chat.messages, locals: { refresh: true } %>
+    </div>
+  `;
+
+  $('.message-user-container-own').prepend($htmlHead);
+  $('#message-chat-container-own > div:nth-child(1)').after($htmlBody);
+  console.log('new');
+
+  $(document).trigger('subscriptionSignal', $('#chat<%= @chat.id %>'));
+
+
+}
+else {
+
+  console.log($('#chat<%= @chat.id %>'));
+
+}
+
+$('#message-chat-container-own').children().first().remove();
+$('#message-chat-container-own').children().last().remove();
+$('#message-chat-container-own').prepend('<%= j render "chats/head" %>');
+$('#message-chat-container-own').append('<%= j render "chats/form" %>');
+
+$('#chat<%= @chat.id %>').addClass('message-history-shown');
+$('#chat<%= @chat.id %>').css({'display': 'block'});
+
+$('#chat<%= @chat.id %>').off();
+$('#chat<%= @chat.id %>').on('pusher', function(event, arg) {
+
+  var $last = $('#chat' + '<%= @chat.id %>').children().last();
+  if (arg.sender == '<%= current_user.id %>') {
+    $($last).attr('class', 'self-message-own');
+  }
+
+});
+
+$(`[chat=<%= @chat.id %>]`).text('');
+
+$('[num=messages]').text('<%= current_user.unread_messages == 0 ? '' : current_user.unread_messages %>');
+
+$('[chat=<%= @chat.id %>]').css({'background-color': 'transparent'});
+var $total = '<%= current_user.unread_messages %>'
+if ($total == 0) {
+  $('[num=messages]').css({'background-color': 'transparent'});
+  console.log($total);
+}
+
+$('[chat=<%= @chat.id %>]').on('rollbackIncrement', function(event) {
+
+  $.ajax({
+    type: 'POST',
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    url: '/chats/update_c',
+    data: {'sender_id': <%= @chat.sender_id %>, 'recipient_id': <%= @chat.recipient_id %>}
+  });
+
+});

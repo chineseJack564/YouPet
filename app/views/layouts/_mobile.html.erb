@@ -1,0 +1,94 @@
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<!-- Mobile Menu Start -->
+<div class="mobile-menu-wrapper">
+    <div class="offcanvas-overlay"></div>
+
+    <!-- Mobile Menu Inner Start -->
+    <div class="mobile-menu-inner">
+
+        <!-- Button Close Start -->
+        <div class="offcanvas-btn-close">
+            <i class="fas fa-bars"></i>
+        </div>
+        <!-- Button Close End -->
+
+        <!-- Mobile Menu Inner Wrapper Start -->
+        <div class="mobile-menu-inner-wrapper bg-name-bright <%=dark%>">
+
+            <!-- Mobile Menu Start -->
+            <div class="mobile-navigation">
+                <nav>
+                    <ul class="mobile-menu">
+                        <li class="has-children">
+                            <%= link_to 'Home', home_path , class: "bg-name-text #{dark}"%>
+                            
+                        </li>
+                        <li class="has-children bg-name-text <%=dark%>">
+                            <a href="#" class="bg-name-text <%=dark%>">Posts <i class='fas fa-chevron-down' aria-hidden='true'></i></a>
+                            <ul class="dropdown dropdown bg-name-text <%=dark%>">
+                                <li><%= link_to  "All Posts",  posts_path %></li>
+                                <% if current_user %>
+                                    <li><%= link_to  "Create",  new_post_path %></li>
+                                <% end %>
+                            </ul>
+                        </li>
+                        <li class="has-children">
+                            <a href="#" class="bg-name-text <%=dark%>">Animals <i class='fas fa-chevron-down' aria-hidden='true'></i></a>
+                            <ul class="dropdown bg-name-text <%=dark%>">
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=0&commit=Apply+filter">Dog</a></li>
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=1&commit=Apply+filter">Cat</a></li>
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=2&commit=Apply+filter">Hamster</a></li>
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=3&commit=Apply+filter">Bird</a></li>
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=4&commit=Apply+filter">Fish</a></li>
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=5&commit=Apply+filter">Rabbit</a></li>
+                                <li><a href="/posts?utf8=✓&q%5Bspecie_eq%5D=6&commit=Apply+filter">Other</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="nav-icon-container-own account-own bg-name-text <%=dark%>" href="javascript:void(0)" tag=account >
+                                <i class="fas fa-user nav-icon"></i> Account Manegement
+                            </a>
+                        </li>
+                        <li><a class="nav-icon-container-own messages-own bg-name-text <%=dark%>" href="javascript:void(0)" tag=messages >
+                                <i class="fas fa-envelope nav-icon"></i>
+                                Messeges
+                            </a>
+                        </li>
+                        <li><a class="nav-icon-container-own notifications-own bg-name-text <%=dark%>" href="javascript:void(0)" tag=notifications >
+                                    <i class="fas fa-bell nav-icon"></i>
+                                    Notificaciones
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- Mobile Menu End -->
+
+
+            <!-- Contact Links/Social Links Start -->
+            <div class="mt-auto bottom-0">
+
+                <!-- Contact Links Start -->
+                <ul class="contact-links">
+                    <li><i class="fas fa-phone"></i> +012 3456 789</li>
+                    <li><i class="fas fa-envelope"></i> zyan@uc.cl</li>
+                    <li><i class="fas fa-clock"></i> <span>Monday - Sunday 9.00 - 18.00</span> </li>
+                </ul>
+                <!-- Contact Links End -->
+
+                <!-- Social Widget Start -->
+                <div class="widget-social">
+                    <%= social_share_button_tag("YouPet, the only page youneed to find your pet", :url => root_url, desc: "YouPet, the only page youneed to find your pet") %>
+                </div>
+                <!-- Social Widget Ende -->
+            </div>
+            <!-- Contact Links/Social Links End -->
+        </div>
+        <!-- Mobile Menu Inner Wrapper End -->
+
+    </div>
+    <!-- Mobile Menu Inner End -->
+</div>
+<!-- Mobile Menu End -->

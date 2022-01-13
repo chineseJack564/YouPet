@@ -1,0 +1,97 @@
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<%# info area start %>
+<div class="section breadcrumb-area bg-name-bright <%= dark %>">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-wrapper bg-name-text <%= dark %>">
+                    <h2 class="breadcrumb-title">All Posts</h2>
+                    <ul  class="align-items-end">
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li>All Posts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-md">
+    <%if notice %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong><%=notice%></strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <%end %>
+    </div>
+    </div>
+</div>
+<%# info area end %>
+<!-- Shop Section Start -->
+<div class="section section-margin">
+        <div class="container">
+            <div class="row flex-row-reverse">
+                <div class="col-lg-9 col-12">
+                    <%#tool bar %>
+                    <div class="shop_toolbar_wrapper flex-column flex-md-row p-2 m-b-40 border">
+                        <div class="shop-top-bar-left">
+                            <div class="shop_toolbar_btn">
+                                    <button data-role="grid_3" type="button" class="active btn-grid-3" title="Grid"><i class="fas fa-th"></i></button>
+                                    <button data-role="grid_list" type="button" class="btn-list" title="List"><i class="fas fa-list"></i></button>
+                            </div>
+                        </div>
+                        <div class="shop-top-bar-right">
+                            <%= link_to '+  Create new post', new_post_path , class: 'btn btn-success btn-lg'%>
+                        </div>
+                    </div>
+                    <%# tool bar end %>
+                    <%# shop grid start%>
+                    <div class="row shop_wrapper grid_3">
+                        <%= render @posts %>
+                    </div>
+                    <%# shop grid end%>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <aside class="sidebar_widget m-t-50 mt-lg-0">
+                        <div class="widget_inner">
+                            <%= search_form_for @p do |f| %>
+                                <%# search %>
+                                <div class="widget-list m-b-50">
+                                    <h3 class="widget-title m-b-30 bg-name-text <%= dark %>">Search</h3>
+                                        <div class="search-box">
+                                            <%= f.search_field :title_cont, placeholder: "YOUPET!", id: 'search_in', class: "form-control bg-name-text bg-name-bright #{dark}"%>
+                                            <%= button_tag( :class => "search-icon") do %>
+                                            <i class='fas fa-search bg-name-text <%=dark%>'></i>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %>
+                                <%# filters %>
+                                
+                                <div class="widget-list m-b-50 bg-name-text <%= dark %>">
+                                <%= search_form_for @p do |f| %>
+                                    <h3 class="widget-title m-b-20 label-buffer">Animal type</h3>
+                                    <div class="mb-3">
+                                    <%= f.select :specie_eq, Post.species.to_a.map { |w| [w[0].humanize, w[1]] },
+                                            {:include_blank => true}, class: "form-select  bg-name-text bg-name-bright #{dark}" %>
+                                    </div>
+                                    <%# f.submit 'Apply filter', class: 'btn btn-primary btn-lg'%>
+
+                                    <h3 class="widget-title m-b-20 label-buffer">Post type</h3>
+                                    <div class="mb-3">
+                                    <%= f.select :post_type_eq, Post.post_types.to_a.map { |w| [w[0].humanize, w[1]] },
+                                            {:include_blank => true}, class: "form-select  bg-name-text bg-name-bright #{dark}" %>
+                                    </div>
+                                    <%= f.submit 'Apply filter', class: 'btn btn-primary btn-lg'%>
+                                </div>
+                                 <% end %>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shop Section end -->
+

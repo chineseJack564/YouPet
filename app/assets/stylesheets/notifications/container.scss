@@ -1,0 +1,185 @@
+// Place all the styles related to the Notifications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@media only screen and (max-width: 500px){
+  .notifications-container-own {
+    max-width: 100vw;
+  }
+  .current-option-container-own{
+    max-width: 80%;
+  }
+}
+
+:root {
+  --notif-view-width: 78%;
+  --notif-height: 100px;
+  --notif-del-width: 20%;
+  --trans-time: .2s;
+  --notif-return-width: 50px;
+  --notif-contain-width: 440px;
+  --notif-ver-pad: 2vh;
+  --notif-hor-pad: 2vw;
+}
+
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+
+.notifications-container-own {
+  position: fixed;
+  right: 0; top: 120px;
+  width: var(--notif-return-width); height: calc(100vh - 120px);
+  transition: .5s;
+  background-color: inherit;
+  overflow: visible;
+  padding: var(--notif-ver-pad) 0vw var(--notif-ver-pad) var(--notif-return-width);
+  z-index: 99;
+  overflow: hidden;
+}
+
+.current-option-container-own.notifications-own {
+  display: flex;
+  flex-direction: column;
+}
+
+.notif-title-own {
+  padding: 0 0 20px 0; 
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 2em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+#notif-all-own {
+  position: relative;
+  height: 70vh;
+  overflow-y: scroll;
+}
+
+.notif-container-own {
+  position: relative;
+  margin: 0 .7em .7em 0;
+  height: var(--notif-height);
+  overflow: hidden;
+  transition: .5s;
+}
+
+.notif-head-own {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .9em;
+  font-weight: bold;  
+}
+
+.notif-body-own {
+  overflow: hidden;
+}
+
+.notif-buttons-own {
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  top: 0;
+  width: 100%; height: 100%;
+}
+
+.notif-view-own {
+  position: relative;
+  width: var(--notif-view-width);
+  transition: var(--trans-time);
+}
+
+.notif-del-own {
+  position: relative;
+  width: var(--notif-del-width);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  transition: var(--trans-time);
+}
+
+.notif-content-own {
+  padding: 10px;
+  width: var(--notif-view-width);
+  height: 100%;
+}
+
+.fa-times {
+  font-size: 2em;
+  color: rgba(0, 0, 0, 0.5);
+  transition: var(--trans-time);
+}
+
+.notif-del-own:hover .fa-times {
+  color: rgba(0, 0, 0, 1);
+}
+
+.notif-del-own:hover {
+  opacity: 0.8;
+}
+
+.notif-view-own:hover {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.notif-return-bar-own {
+  position: absolute;
+  height: 100%; width: var(--notif-return-width);
+  top: 0; left: 0;
+  opacity: 0.9;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.notif-return-bar-own:hover .fa-chevron-left {
+  color: rgb(148, 126, 126);
+}
+
+.show-own {
+  width: calc(var(--notif-contain-width) + var(--notif-return-width));
+  padding: var(--notif-ver-pad) var(--notif-hor-pad) var(--notif-ver-pad) calc(var(--notif-hor-pad) + var(--notif-return-width));
+}
+
+.fa-chevron-left {
+  transition: .3s;
+}
+
+.show-own .fa-chevron-left {
+  transform: rotate(180deg);
+}
+
+.current-option-container-own {
+  position: absolute;
+  width: calc(var(--notif-contain-width) - 2*var(--notif-hor-pad)); height: 86vh;
+  transform: translateX(calc(0px - var(--notif-contain-width) + var(--notif-hor-pad) - var(--notif-return-width)));
+  transition: 1s;
+}
+
+.current-option-container-own.active-option-own {
+  transform: translateX(0);
+}
+
+.exit-animate-own {
+  animation: exitanimate 1s;
+}
+
+@keyframes exitanimate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(0px + var(--notif-contain-width) - var(--notif-hor-pad) + var(--notif-return-width)));
+  }
+}

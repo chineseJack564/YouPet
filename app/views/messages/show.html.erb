@@ -1,0 +1,18 @@
+
+<h4>Send Message to <%= @recipient.username %></h4>
+<h5>Past messages:</h5>
+
+<% @messages.each do |message| %>
+  <p>
+    <%= message.sender == current_user ? 'You' : message.sender.username %>:
+    <%= message.body %>
+    <% if message.sender == current_user %>
+      <%= link_to "Edit", messages_edit_path(message) %>
+      <%= link_to "Delete", messages_delete_path(message), method: :delete %>
+    <% end %>
+  </p>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to "Back", users_index_path %>

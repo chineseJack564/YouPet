@@ -1,0 +1,50 @@
+<%if @comment.post.user == current_user%>
+<!-- NAv Area Start -->
+<div class="section breadcrumb-area bg-name-bright">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-wrapper">
+                    <h2 class="breadcrumb-title">Edit Reply</h2>
+                    <ul class="align-items-end">
+                        <li><%= link_to 'Home', root_path%></li>
+                        <li><%= link_to @comment.post.title, post_path(@comment.post)%></li>
+                        <li>Edit Reply</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Nav Area End -->
+<div class="section section-margin">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-md-8 m-auto">
+            
+                <%= form_with(model: [@comment, @reply] , method: :patch, url: comment_reply_url) do |form|%>
+
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-8 d-grid">
+                            <label  class="form-label">Content</label>
+                            <%= form.text_area :content ,  class:"form-control", row:"2"%>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 d-grid">
+                            <%= form.submit "Edit", class: "btn btn-primary btn-lg post-bt-buffer"%>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+            <% else%>
+            <%= render 'error/index' %>
+            <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+
+$('[notif=<%= @notif.id %>]').attr('unread', 'false');
+
+$('[num=notifications]').text('<%= current_user.unread_notifications == 0 ? '' : current_user.unread_notifications %>');
+
+var $remain = '<%= current_user.unread_notifications %>';
+console.log($remain);
+if ($remain == 0) {
+  $('[num=notifications]').css({'background-color': 'transparent'})
+}

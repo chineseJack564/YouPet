@@ -1,0 +1,83 @@
+
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+
+<!-- Footer Section Start -->
+<footer class="section footer-section bg-name-text <%= dark %>">
+    <!-- Footer Top Start -->
+    <div class="footer-top bg-name-bright section-padding <%= dark %>">
+        <div class="container">
+            <div class="row m-b-n40">
+                <div class="col-12 col-sm-6 col-lg-3 m-b-40" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="single-footer-widget">
+                        <h1 class="widget-title">About Us</h1>
+                        <p class="desc-content">We are students from group 77, making this page for a course work. Hope you like it!</p>
+                        <!-- Soclial Link Start -->
+                        <div class="widget-social justify-content-start m-b-n10">
+                            <%= social_share_button_tag("YouPet, the only page you need to find your pet",:url => root_url, desc: "YouPet, the only page you need to find your pet") %>
+                        </div>
+                        <!-- Social Link End -->
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3 m-b-40" data-aos="fade-up" data-aos-duration="1200">
+                    <div class="single-footer-widget">
+                        <h2 class="widget-title">Useful Links</h2>
+                        <ul class="widget-list">
+                            <li><%= link_to  "Home",  root_path %></li>
+                            <li><%= link_to  "Posts",  posts_path %></li>
+                            <% if current_user %>
+                                <li><%= link_to  "View Profile",  users_show_path(current_user) %></li>
+                            <% end %>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3 m-b-40" data-aos="fade-up" data-aos-duration="1400">
+                    <div class="single-footer-widget">
+                        <% if current_user %>
+                            <h2 class="widget-title">Manage</h2>
+                            <ul class="widget-list">
+                                <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+                                <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+                            </ul>
+                        <% else %>
+                            <h2 class="widget-title">Join Us</h2>
+                            <ul class="widget-list">
+                                <li><%= link_to "Register", new_user_registration_path %></li>
+                                <li><%= link_to "Log in", new_user_session_path %></li>
+                            </ul>
+                        <% end %>
+
+                    </div>
+                </div>
+  
+                <div class="col-12 col-sm-6 col-lg-3 m-b-40" data-aos="fade-up" data-aos-duration="1600">
+                    <div class="single-footer-widget">
+                        <h2 class="widget-title">Quick Menu</h2>
+                        <ul class="widget-list">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Top End -->
+
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom bg-name-light <%= dark %> p-t-20 p-b-20">
+        <div class="container">
+            <div class="row align-items-center m-b-n20">
+                <div class="col-md-6 text-center text-md-start order-2 order-md-1 m-b-20">
+                    <div class="copyright-content">
+                        <p class="mb-0">Copyright &copy; 2021. YouPet All rights reserved. (Fake)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom End -->
+</footer>
+<!-- Footer Section End -->

@@ -1,0 +1,54 @@
+
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<!-- Single Product Start -->
+<div class="col-lg-4 col-md-4 col-sm-6 product">
+    <div class="product-inner ">
+        <div class="thumb">
+            <a class="image">
+                <% if post.avatar_main.attached? %>
+                    <%= image_tag post.avatar_main, class: "fit-image"%>
+                <%else%>
+                    <img src="/default_pic.jpg" class="fit-image">
+                <% end %>
+            </a>
+            <span class="badges">
+                <% if post.post_type == 'Adoption'%>
+                    <span class="new"><%= post.post_type %></span>
+                <% else %>
+                    <span class="sale"><%= post.post_type %></span>
+                <% end %>
+            </span>
+            <div class="action-wrapper">
+                <%= link_to "<i class='fas fa-eye'></i>".html_safe, post_path(post) , class:"action quickview"%>
+                <%= link_to "<i class='far fa-comment-dots'></i>".html_safe, post_path(post), class:"action"%>
+            </div>
+        </div>
+        <div class="content bg-name-bright bg-name-text <%= dark %>">
+            <h4><%= link_to post.title, post_path(post), class: "bg-name-text #{dark}"%></h4>
+            <h5 class="title">By: <%= post.user.username %></h5>
+            <span class="price">
+                    <% if post.post_type == 'Adoption'%>
+                        <span class="new"><%= post.post_type %></span>
+                    <% else %>
+                        <span class="new text-numer">$<%= post.price %></span>
+                    <% end %>
+            </span>
+            <p><%= post.description %></p>
+            <p><%= post.specie %></p>
+            <!-- Cart Button Start -->
+            <div class="cart-btn action-btn">
+                <div class="action-cart-btn-wrapper d-flex align-items-center">
+                    <div class="add-to_cart">
+                        <%= link_to "<i class='fas fa-eye'></i>View Post".html_safe, post_path(post) , class:"btn btn-primary btn-hover-dark rounded-0"%>
+                    </div>
+                    <%= link_to "<i class='far fa-comment-dots'></i>".html_safe, post_path(post), class:"action"%>
+                </div>
+            </div>
+            <!-- Cart Button End -->
+        </div>
+    </div>
+</div>
+<!-- Single Product End -->

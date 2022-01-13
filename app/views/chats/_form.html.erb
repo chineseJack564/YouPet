@@ -1,0 +1,21 @@
+
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+
+<% from = current_user.id %>
+<% to = other(@chat).id %>
+
+<%= form_with model: @message, url: "/messages/from_#{from}/to_#{to}", id: "message-footer-own", class: "#{dark} bg-name-text" do |form| %>
+  
+  <div class="form-flex-own">
+    <%= form.text_area :body, class: "message-input-own bg-name-bright #{dark}", required: true %>
+  </div>
+  <%= form.text_field :chat_id, value: @chat.id, type: 'hidden' %>
+  <%= button_tag class: 'message-send-own' do %>
+    <i class="fas fa-chevron-circle-right"></i>
+  <% end %>
+
+<% end %>

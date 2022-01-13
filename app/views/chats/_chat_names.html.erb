@@ -1,0 +1,27 @@
+
+<% if current_user %>
+  <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+
+<%= link_to chats_show_path(chat.sender_id, chat.recipient_id), remote: true, method: :get, class: "chat#{chat.id} message-user-own bg-name-bright #{dark}" do %>
+  <div class="user-info-avatar-own">
+    <%= include_image other(chat) %>
+  </div>
+  <div class="message-user-body-own bg-name-text <%= dark %>">
+    <p class='message-user-username-own'><%= other(chat).username %></p>
+    
+    <p class='message-user-last-own'><% if chat.messages.first %><%= chat.messages.last.body %><% end %></p>
+    <p class='message-user-time-own'><% if chat.messages.first %><%= chat.messages.last.updated_at.strftime("%H:%M %d/%m") %><% end %></p>
+    <% if current_user.id == chat.recipient.id %>
+      <span num=chats user=<%= current_user.id %> chat=<%= chat.id %> style='background-color: <%= 'transparent' if chat.recipient_unreads == 0 %>;'>
+        <%= chat.recipient_unreads == 0 ? '' : chat.recipient_unreads %>
+      </span>
+    <% else %>
+      <span num=chats user=<%= current_user.id %> chat=<%= chat.id %> style='background-color: <%= 'transparent' if chat.sender_unreads == 0 %>;'>
+        <%= chat.sender_unreads == 0 ? '' : chat.sender_unreads %>
+      </span>
+    <% end %>
+    
+  </div>
+<% end %>

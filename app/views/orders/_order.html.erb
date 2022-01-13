@@ -1,0 +1,55 @@
+<% if current_user %>
+    <% dark = current_user.darkmode? ? 'dark-own' : '' %>
+<% end %>
+
+<div class="order-show-buffer">
+<div class="row align-items-center">
+    <div class="col-md-6 col-xl-8">
+        <div class="row bg-name-text <%= dark %>">
+            <div>From: 
+                <% if order.user == current_user%>
+                    <%= link_to "Me", users_show_path(order.user), class: 'username-link2' %>
+                <% else %>
+                    <%= link_to order.user.username, users_show_path(order.user), class: 'username-link2' %>
+                <% end %>
+                <% if order.status == 'rejected' %>
+                <span class="badge bg-danger">Rejected</span>
+                <% elsif  order.status == 'accepted'%>
+                <span class="badge bg-success">Accepted</span>
+                <% elsif  order.status == 'finished'%>
+                <span class="badge bg-dark">finished</span>
+                <%else%>
+                <span class="badge bg-secondary">Pending</span>
+                <% end %>
+            </div>
+        </div>
+        <div class="row bg-name-text <%= dark %>">
+            <p><%= order.body%></p>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4 col-xl-2">
+        <div class="d-grid">
+            <% if order_belongs_to_user? order %>
+            <% if order.status == 'pending'%> 
+            <%= link_to '<i class="far fa-edit"></i> Edit'.html_safe, edit_post_order_path(order.post, order),
+                  method: :get, class:"btn btn-light" %>
+            <% end %>
+            <% if order.status != 'accepted' && order.status != 'finished'%> 
+             <%= link_to '<i class="far fa-trash-alt"></i> Delete'.html_safe, [order.post, order], class:"btn btn-danger", method: :delete %>
+            <% end %> 
+            <% end %>
+            <% if order.post.user == current_user && order.status == 'accepted'%> <%#if its the seller %>
+                <%= link_to '<i class="fas fa-clipboard-check"></i> end order'.html_safe, accept_order_post_path(order.post.id, order.id), class:"accept-order btn btn-esp"%> 
+            <% end %>
+            <% if order.status == 'accepted' && order.post.user == current_user%> 
+            <a href="<%=chats_create_path(current_user, order.user)%>" data-remote='true' type="button" class="btn btn-msg4 align-self-center" ><i class="fas fa-comments"></i> Message Buyer</a>
+            <% end %>
+            <% if order.status == 'accepted' && order.user == current_user%> 
+            <a href="<%=chats_create_path(current_user, order.post.user)%>" data-remote='true' type="button" class="btn btn-msg4 align-self-center" ><i class="fas fa-comments"></i> Message Seller</a>
+            <% end %>
+        </div>
+    </div>
+</div>
+</div>
+
